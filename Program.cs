@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +13,11 @@ namespace bai_toan_tính_đien_nước
             Console.Write("Please enter your name: ");
             String Name = Console.ReadLine();
             double totalBill = 0;
-            Console.WriteLine();
+
             Console.WriteLine("1 Household customer");
             Console.WriteLine("2 Administrative agency, public services");
             Console.WriteLine("3 Production units");
             Console.WriteLine("4 Business services");
-            Console.WriteLine();
 
             Console.Write("Customer type: ");
             int type = int.Parse(Console.ReadLine());
@@ -35,16 +34,39 @@ namespace bai_toan_tính_đien_nước
             int lastwater = int.Parse(Console.ReadLine());
             Console.Write("this month water use");
             int thiswater = int.Parse(Console.ReadLine());
-            int Amount = thiswater - lastwater ;
+            int Amount = thiswater - lastwater;
 
             if (type == 1)
             {
-                double[] prices = { 5973, 7052, 8699, 15929 };
-                int index = Math.Min((int)Math.Floor((double)Amount / 10), 3);
-
-                double price = prices[index];
-                double fee = price * Amount;
-                totalBill = (fee + (0.1 * Amount * price) + (fee * 0.1));
+                double price;
+                if (Amount > 0 && Amount <= 10)
+                {
+                    price = (Amount * 5.973);
+                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
+                    double fee = price * Amount;
+                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
+                }
+                else if (Amount > 10 && Amount <= 20)
+                {
+                    price = (Amount * 7.052);
+                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
+                    double fee = price * Amount;
+                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
+                }
+                else if (Amount > 20 && Amount <= 30)
+                {
+                    price = (Amount * 8.699);
+                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
+                    double fee = price * Amount;
+                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
+                }
+                else
+                {
+                    price = (Amount * 15.929);
+                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
+                    double fee = price * Amount;
+                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
+                }
 
             }
 
@@ -66,22 +88,11 @@ namespace bai_toan_tính_đien_nước
                 double fee = price * Amount;
                 totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
             }
-            
-            
-                
-            
-            Console.WriteLine();
-            Console.WriteLine($"Name: {Name}");
-            Console.WriteLine($"Type: {type}");
-            Console.WriteLine($"Amount: {Amount}");
-            Console.WriteLine($"Total Bill: {totalBill}");
-            Console.WriteLine();
-            
+                Console.WriteLine($"Name: {Name}");
+                Console.WriteLine($"Type: {type}");
+                Console.WriteLine($"Amount: {Amount}");
+                Console.WriteLine($"Total Bill: {totalBill}");
+                Console.ReadLine();
+            }
         }
-
-
-        
-            
-        
-    }
 }
