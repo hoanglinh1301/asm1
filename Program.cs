@@ -1,98 +1,37 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+ #List : mixed types
+def inputNumber(promt):
+    while True:
+     try:
+        magicNumber = float(input( promt ))
+        return magicNumber
+     except Exception:
+        print("du lieu bi loi!")
+def calculate_gpa():
+    product = 0
+    for i in range(0,len(subjects)):
+        product += grades[i]*credits[i]
+    return product / (sum(credits))
+        
+        
+        
+subjects = ["C#","Python"] #sub
+credits = [] #credit
+grades = [] #grade
+ # Print the student's name and GPA.
+student_name = input("Nhập tên sinh viên: ")
+for subject in subjects:
+    grade = inputNumber(f"Input grade for {subject}: ")
+    grades.append(grade) 
+    credit = inputNumber(f"Input credit for {subject}: ")
+    credits.append(credit)
 
-namespace bai_toan_tính_đien_nước
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.Write("Please enter your name: ");
-            String Name = Console.ReadLine();
-            double totalBill = 0;
-
-            Console.WriteLine("1 Household customer");
-            Console.WriteLine("2 Administrative agency, public services");
-            Console.WriteLine("3 Production units");
-            Console.WriteLine("4 Business services");
-
-            Console.Write("Customer type: ");
-            int type = int.Parse(Console.ReadLine());
-            if (type >= 1 && type <= 4)
-            {
-                Console.WriteLine("OK");
-            }
-            else
-            {
-                Console.WriteLine("Invalid type");
-                return;
-            }
-            Console.WriteLine("last month water use");
-            int lastwater = int.Parse(Console.ReadLine());
-            Console.Write("this month water use");
-            int thiswater = int.Parse(Console.ReadLine());
-            int Amount = thiswater - lastwater;
-
-            if (type == 1)
-            {
-                double price;
-                if (Amount > 0 && Amount <= 10)
-                {
-                    price = (Amount * 5.973);
-                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
-                    double fee = price * Amount;
-                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
-                }
-                else if (Amount > 10 && Amount <= 20)
-                {
-                    price = (Amount * 7.052);
-                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
-                    double fee = price * Amount;
-                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
-                }
-                else if (Amount > 20 && Amount <= 30)
-                {
-                    price = (Amount * 8.699);
-                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
-                    double fee = price * Amount;
-                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
-                }
-                else
-                {
-                    price = (Amount * 15.929);
-                    Console.WriteLine($"Water price for {Name} is: {price} VND/m3");
-                    double fee = price * Amount;
-                    totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
-                }
-
-            }
-
-            else if (type == 2)
-            {
-                double price = 9955;
-                double fee = price * Amount;
-                totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
-            }
-            else if (type == 3)
-            {
-                double price = 11615;
-                double fee = price * Amount;
-                totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
-            }
-            else if (type == 4)
-            {
-                double price = 22068;
-                double fee = price * Amount;
-                totalBill = fee + (0.1 * Amount * price) + (fee * 0.1);
-            }
-                Console.WriteLine($"Name: {Name}");
-                Console.WriteLine($"Type: {type}");
-                Console.WriteLine($"Amount: {Amount}");
-                Console.WriteLine($"Total Bill: {totalBill}");
-                Console.ReadLine();
-            }
-        }
-}
+totalcredits = sum(credits)
+print(f"tong so tin chi cua ban {student_name} la:{totalcredits} ")
+totalgrades = sum(grades)
+print(f"tong so diem cua ban {student_name} la:{totalgrades}")
+print(calculate_gpa())
+# Calculate GPA
+gpa = calculate_gpa()
+print(f"{student_name}'s GPA is: {gpa}")
+with open('Linh.txt','w') as file:
+      file.write(f'{student_name}, {credits}, {grades}, {gpa}') 
